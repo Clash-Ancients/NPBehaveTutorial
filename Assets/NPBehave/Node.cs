@@ -35,7 +35,12 @@ public abstract class Node
    {
       
    }
+
+   public virtual void SetRoot(Root _root)
+   {
+      m_rootNode = _root;
+   }
    
-   public Clock NodeClock => m_rootNode.ClockInst;
+   public Clock Clock => m_rootNode.GetRootClock();
    
 }

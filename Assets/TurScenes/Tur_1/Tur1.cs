@@ -21,7 +21,7 @@ public class Tur1 : TurBase
         if (m_leftTime >= TimeFrequency)
         {
             m_leftTime -= TimeFrequency;
-            m_Root.ClockInst.Update(Time.deltaTime);
+            m_clock.Update(Time.deltaTime);
         }
         m_leftTime += Time.deltaTime;
     }

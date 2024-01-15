@@ -9,7 +9,7 @@ public class Service : Decorator
     {
         m_serviceAction = _service;
     }
-
+    
     protected override void DoStart()
     {
         if (m_inverval <= 0f)
@@ -17,7 +17,7 @@ public class Service : Decorator
             
             if (null != m_serviceAction)
             {
-                m_rootNode.NodeClock.OnAddUpdateObserver(m_serviceAction);
+                m_rootNode.Clock.OnAddUpdateObserver(m_serviceAction);
                 m_serviceAction?.Invoke();
             }
         }
