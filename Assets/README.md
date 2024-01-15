@@ -53,3 +53,9 @@ learn how to use NPBehave, read source code
 - 3 添加 m_interval
 - 4 添加 m_randomVariation
 ```
+
+# Tur_1 : 通过root, service打印一条日志
+```c++
+- 1 路径： Assets/TurScenes/Tur_1
+- 2 通过这个例子，可以理解npbehave的基础框架逻辑
+```
