@@ -1,28 +1,24 @@
 using System;
-
 public class Service : Decorator
 {
-    Action m_serviceMethod;
-
-    // float m_interval = -1f;
-    //
-    // float m_randomVariation = 0f;
+    Action m_serviceAction;
     
-    public Service(Action _serviceMethod, Node _decoratee) : base("Service", _decoratee)
+    float m_inverval = -1f;
+    
+    public Service(Action _service, Node _decorator) : base("Service", _decorator)
     {
-        m_serviceMethod = _serviceMethod;
+        m_serviceAction = _service;
     }
-    
+
     protected override void DoStart()
     {
-        if (null != m_serviceMethod)
+        if (m_inverval <= 0f)
         {
-            m_serviceMethod?.Invoke();
-        }
-
-        if (null != m_decoratee)
-        {
-            m_decoratee.Start();
+            if (null != m_serviceAction)
+            {
+                m_serviceAction?.Invoke();
+            }
         }
     }
+    
 }

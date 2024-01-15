@@ -1,6 +1,10 @@
 # NPBehaveTutorial
 learn how to use NPBehave, read source code
 
+## 资源地址：
+- 1 npbehave github:https://github.com/meniku/NPBehave
+- 2 本工程 github：https://github.com/Clash-Ancients/NPBehaveTutorial
+
 # 规则
 ```c#
 规则 1 : 只能启动非激活节点
@@ -52,4 +56,10 @@ learn how to use NPBehave, read source code
 - 2 添加 serviceMethod
 - 3 添加 m_interval
 - 4 添加 m_randomVariation
+```
+
+# Tur_1 : 通过root, service打印一条日志
+```c++
+- 1 路径： Assets/TurScenes/Tur_1
+- 2 通过这个例子，可以理解npbehave的基础框架逻辑
 ```

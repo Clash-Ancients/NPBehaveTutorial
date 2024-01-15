@@ -1,36 +1,38 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 public abstract class Node
 {
-
-   string m_Name;
-
-   protected Root m_Root;
+   string m_name;
 
    protected Node m_parentNode;
    
    public Node(string _name)
    {
-      m_Name = _name;
+      m_name = _name;
    }
-   
+
    protected virtual void DoStart()
    {
       
    }
-   
+
    public virtual void Start()
    {
 
       DoStart();
    }
 
-   public virtual void SetRoot(Root _root)
+   public virtual void Stop()
    {
-      m_Root = _root;
+      
    }
 
-   public void SetParent(Container parent)
+   public virtual void DoStop()
    {
-      m_parentNode = parent;
+      
    }
+   
    
 }

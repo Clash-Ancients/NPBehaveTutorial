@@ -1,18 +1,16 @@
 using UnityEngine;
 
-public class Tur1 : MonoBehaviour
+public class Tur1 : TurBase
 {
     Service m_mainTree;
-    Root m_rootNode;
-    // Start is called before the first frame update
     void Start()
     {
-        m_mainTree = new Service(() => { Debug.Log("called"); }, null);
+        m_mainTree = new Service(() => { Debug.Log(1); }, null);
 
-        m_rootNode = new Root("root", m_mainTree);
+        m_Root = new Root(m_mainTree);
         
-        m_rootNode.Start();
+        m_Root.Start();
     }
 
-    
+   
 }
