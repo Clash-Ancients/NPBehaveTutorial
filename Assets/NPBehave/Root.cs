@@ -6,8 +6,11 @@ public class Root : Decorator
 {
 
     protected Node m_mainNode;
+
+    protected Clock m_clock;
+    public Clock ClockInst => m_clock;
     
-    public Root(Node _mainnode) : base("Root", _mainnode)
+    public Root(Clock clock, Node _mainnode) : base("Root", _mainnode)
     {
         m_mainNode = _mainnode;
     }
@@ -16,5 +19,7 @@ public class Root : Decorator
     {
         m_mainNode.Start();
     }
+    
+    
     
 }

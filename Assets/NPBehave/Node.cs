@@ -7,6 +7,8 @@ public abstract class Node
    string m_name;
 
    protected Node m_parentNode;
+
+   protected Root m_rootNode;
    
    public Node(string _name)
    {
@@ -34,5 +36,6 @@ public abstract class Node
       
    }
    
+   public Clock NodeClock => m_rootNode.ClockInst;
    
 }

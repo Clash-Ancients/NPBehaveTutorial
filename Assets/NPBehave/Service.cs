@@ -14,8 +14,10 @@ public class Service : Decorator
     {
         if (m_inverval <= 0f)
         {
+            
             if (null != m_serviceAction)
             {
+                m_rootNode.NodeClock.OnAddUpdateObserver(m_serviceAction);
                 m_serviceAction?.Invoke();
             }
         }
