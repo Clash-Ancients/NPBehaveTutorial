@@ -8,6 +8,7 @@ public class Service : Decorator
     public Service(Action _service, Node _decorator) : base("Service", _decorator)
     {
         m_serviceAction = _service;
+     
     }
     
     protected override void DoStart()
@@ -22,5 +23,20 @@ public class Service : Decorator
             }
         }
     }
+
+    protected override void DoStop()
+    {
+        m_decorator.Stop();
+    }
     
+    protected override void DoChildStopped(Node child)
+    {
+        if (m_inverval <= 0)
+        {
+            m_rootNode.Clock.OnRemoveUpdateObserver(m_serviceAction);
+        }
+        
+        Stopped();
+        
+    }
 }

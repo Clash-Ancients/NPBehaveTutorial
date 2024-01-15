@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Tur1 : TurBase
@@ -9,7 +8,7 @@ public class Tur1 : TurBase
     Clock m_clock;
     void Start()
     {
-        m_mainTree = new Service(() => { Debug.Log(1); }, null);
+        m_mainTree = new Service(() => { Debug.Log(1); }, new WaitUntilStopped());
         m_clock = new Clock();
         m_Root = new Root(m_clock, m_mainTree);
         

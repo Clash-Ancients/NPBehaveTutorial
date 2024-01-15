@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Root : Decorator
 {
 
@@ -31,5 +27,14 @@ public class Root : Decorator
     {
         m_mainNode.Start();
     }
+
+    protected override void DoStop()
+    {
+        m_mainNode.Stop();
+    }
     
+    protected override void DoChildStopped(Node child)
+    {
+       Stopped();
+    }
 }

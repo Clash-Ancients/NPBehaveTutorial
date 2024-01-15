@@ -4,7 +4,7 @@ public class TurBase : MonoBehaviour
 {
     protected Root m_Root;
 
-    public void OnGUI()
+    public virtual void OnGUI()
     {
         if (GUI.Button(new Rect(20f, 20f, 120f, 60), "Stop"))
         {
