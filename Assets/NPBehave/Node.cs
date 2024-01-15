@@ -24,7 +24,15 @@ public abstract class Node
       DoStart();
    }
 
-   
+   public virtual void Stop()
+   {
+      
+   }
+
+   public virtual void DoStop()
+   {
+      
+   }
    
    
 }

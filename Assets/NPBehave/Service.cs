@@ -18,9 +18,7 @@ public class Service : Decorator
             {
                 m_serviceAction?.Invoke();
             }
-            
         }
-       
     }
     
 }

@@ -1,6 +1,10 @@
 # NPBehaveTutorial
 learn how to use NPBehave, read source code
 
+## 资源地址：
+- 1 npbehave github:https://github.com/meniku/NPBehave
+- 2 本工程 github：https://github.com/Clash-Ancients/NPBehaveTutorial
+
 # 规则
 ```c#
 规则 1 : 只能启动非激活节点
