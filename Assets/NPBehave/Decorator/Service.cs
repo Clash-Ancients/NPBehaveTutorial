@@ -22,6 +22,8 @@ public class Service : Decorator
                 m_serviceAction?.Invoke();
             }
         }
+        
+        m_decorator.Start();
     }
 
     protected override void DoStop()
