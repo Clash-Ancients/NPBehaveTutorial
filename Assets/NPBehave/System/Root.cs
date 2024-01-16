@@ -1,3 +1,4 @@
+using NPBehave;
 public class Root : Decorator
 {
 
@@ -5,15 +6,19 @@ public class Root : Decorator
 
     protected Clock m_clock;
 
+    Blackboard m_blackboard;
+    public Blackboard Blackboard => m_blackboard;
+    
     public Clock GetRootClock()
     {
         return m_clock;
     }
     
-    public Root(Clock _clock, Node _mainnode) : base("Root", _mainnode)
+    public Root( Node _mainnode) : base("Root", _mainnode)
     {
         m_mainNode = _mainnode;
-        m_clock = _clock;
+        m_clock = UnityContext.GetClock();
+        m_blackboard = new Blackboard(m_clock);
         SetRoot(this);
     }
 

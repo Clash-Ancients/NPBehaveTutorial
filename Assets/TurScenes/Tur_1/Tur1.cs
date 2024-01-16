@@ -10,7 +10,7 @@ public class Tur1 : TurBase
     {
         m_mainTree = new Service(() => { Debug.Log(1); }, new WaitUntilStopped());
         m_clock = new Clock();
-        m_Root = new Root(m_clock, m_mainTree);
+        m_Root = new Root(m_mainTree);
         
         m_Root.Start();
     }

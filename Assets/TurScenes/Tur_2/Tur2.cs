@@ -9,15 +9,15 @@ using UnityEngine;
 public class Tur2 : TurBase
 {
    
-    Clock m_clock;
+   
     void Start()
     {
-        m_clock = new Clock();
         
-        m_Root = new Root(m_clock, 
+        
+        m_Root = new Root( 
             
             new Service(0.5f,() => { m_Root.Blackboard["foo"] = !m_Root.Blackboard.Get<bool>("foo"); },
-                
+                        
                         new Selector(
                             
                             new BlackboardCondition("foo", Operator.IS_EQUAL, true, STOPS.IMMEDIATE_RESTART, 

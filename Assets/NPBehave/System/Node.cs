@@ -12,6 +12,8 @@ public abstract class Node
 
    public bool IsActive => m_NodeState == eNodeState.eACTIVE;
    
+   public bool IsStopRequested => m_NodeState == eNodeState.eSTOP_REQUESTED;
+   
    protected eNodeState m_NodeState = eNodeState.eUNACTIVE;
    
    string m_name;
