@@ -183,7 +183,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -194,7 +194,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "npbehave \u57FA\u7840\u6846\u67B6\u5B66\u4E60"
+  m_Text: 'Tur_1 : basic framework'
 --- !u!222 &429347423
 CanvasRenderer:
   m_ObjectHideFlags: 0
