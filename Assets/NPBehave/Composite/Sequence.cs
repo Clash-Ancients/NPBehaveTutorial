@@ -10,7 +10,13 @@ public class Sequence : Composite
     protected override void DoStart()
     {
         m_curIndex = -1;
-        
+
+        OnProcessChildren();
+    }
+
+    protected override void DoStop()
+    {
+        m_children[m_curIndex].Stop();
     }
     
     

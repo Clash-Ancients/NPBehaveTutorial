@@ -8,6 +8,11 @@ public abstract class Composite : Container
     public Composite(string _name, params Node[] _child) : base(_name)
     {
         m_children = _child;
+
+        foreach (var VARIABLE in m_children)
+        {
+            VARIABLE.SetParent(this);
+        }
     }
 
     public override void SetRoot(Root _root)

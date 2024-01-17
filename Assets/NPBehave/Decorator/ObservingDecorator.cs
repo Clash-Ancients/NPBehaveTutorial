@@ -1,12 +1,10 @@
 public abstract class ObservingDecorator : Decorator
 {
-
     protected STOPS m_stop;
     bool m_isObserving = false;
     public ObservingDecorator(string _name, Node _decorator) : base(_name, _decorator)
     {
     }
-    
     
     protected override void DoStart()
     {
@@ -67,5 +65,4 @@ public abstract class ObservingDecorator : Decorator
     protected abstract void StartObserving();
 
     protected abstract void StopObserving();
-
 }
