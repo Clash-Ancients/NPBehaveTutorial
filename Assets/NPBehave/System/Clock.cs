@@ -64,7 +64,7 @@ public class Clock
         timer.ScheduleElapsedTime(m_elapsedTime);
     }
 
-    void RemoveTimer(System.Action _action)
+    public void RemoveTimer(System.Action _action)
     {
         if (!m_isUpdate)
         {

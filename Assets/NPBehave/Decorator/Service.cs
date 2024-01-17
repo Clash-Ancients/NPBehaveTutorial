@@ -45,6 +45,10 @@ public class Service : Decorator
         {
             m_rootNode.Clock.OnRemoveUpdateObserver(m_serviceAction);
         }
+        else
+        {
+            m_rootNode.Clock.RemoveTimer(InvokeIntervalAction);
+        }
         
         Stopped(success);
         

@@ -31,11 +31,15 @@ public abstract class ObservingDecorator : Decorator
     
     protected override void DoChildStopped(Node child, bool success)
     {
-        if (m_isObserving)
+        if (m_stop != STOPS.IMMEDIATE_RESTART)
         {
-            StopObserving();
-            m_isObserving = false;
+            if (m_isObserving)
+            {
+                StopObserving();
+                m_isObserving = false;
+            }
         }
+        
         
         Stopped(success);
     }
@@ -54,9 +58,29 @@ public abstract class ObservingDecorator : Decorator
             /*
              * 1 让sequence 停止
              * 2 让blackboard打开
-             *
-             * 
              */
+
+            Container parentNode = ParentNode;
+            Node childNode = this;
+            while (null != parentNode && !(parentNode is Composite))
+            {
+                childNode = parentNode;
+                parentNode = parentNode.ParentNode;
+            }
+            
+            if (m_stop == STOPS.IMMEDIATE_RESTART)
+            {
+                if (m_isObserving)
+                {
+                    StopObserving();
+                    m_isObserving = false;
+                }
+            }
+
+            var composite = (Composite)parentNode;
+            
+            composite.StopLowerPriorityChildren(childNode, true);
+
         }
     }
     
