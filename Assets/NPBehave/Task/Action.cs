@@ -11,7 +11,7 @@ public class Action : Task
     protected override void DoStart()
     {
         m_action?.Invoke();
-        Stopped();
+        Stopped(true);
     }
     
     

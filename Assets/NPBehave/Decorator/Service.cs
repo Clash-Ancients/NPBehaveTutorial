@@ -39,14 +39,14 @@ public class Service : Decorator
         m_decorator.Stop();
     }
     
-    protected override void DoChildStopped(Node child)
+    protected override void DoChildStopped(Node child, bool success)
     {
         if (m_inverval <= 0)
         {
             m_rootNode.Clock.OnRemoveUpdateObserver(m_serviceAction);
         }
         
-        Stopped();
+        Stopped(success);
         
     }
 

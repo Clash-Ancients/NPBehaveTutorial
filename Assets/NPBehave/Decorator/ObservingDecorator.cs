@@ -1,5 +1,3 @@
-
-
 public abstract class ObservingDecorator : Decorator
 {
 
@@ -8,7 +6,8 @@ public abstract class ObservingDecorator : Decorator
     public ObservingDecorator(string _name, Node _decorator) : base(_name, _decorator)
     {
     }
-
+    
+    
     protected override void DoStart()
     {
         if (!m_isObserving)
@@ -19,15 +18,20 @@ public abstract class ObservingDecorator : Decorator
         
         if (!IsConditionMet())
         {
-            Stopped();
+            Stopped(false);
         }
         else
         {
             m_decorator.Start();
         }
     }
-
-    protected override void DoChildStopped(Node child)
+    
+    protected override void DoStop()
+    {
+        m_decorator.Stop();
+    }
+    
+    protected override void DoChildStopped(Node child, bool success)
     {
         if (m_isObserving)
         {
@@ -35,12 +39,27 @@ public abstract class ObservingDecorator : Decorator
             m_isObserving = false;
         }
         
-        Stopped();
+        Stopped(success);
     }
 
     protected void Evaluate()
     {
-        
+        if (IsActive && !IsConditionMet())
+        {
+            //
+            Stop();
+        }
+        else if (!IsActive && IsConditionMet())
+        {
+            
+            //如果当前非激活 && 条件满足：
+            /*
+             * 1 让sequence 停止
+             * 2 让blackboard打开
+             *
+             * 
+             */
+        }
     }
     
     protected abstract bool IsConditionMet();

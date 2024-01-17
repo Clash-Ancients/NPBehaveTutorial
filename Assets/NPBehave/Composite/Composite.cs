@@ -20,5 +20,6 @@ public abstract class Composite : Container
     }
 
     protected abstract void OnProcessChildren();
-
+    
+    public abstract void StopLowerPriorityChildren(Node child, bool immediateRestart);
 }

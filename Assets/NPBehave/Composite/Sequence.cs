@@ -14,9 +14,16 @@ public class Sequence : Composite
     }
     
     
-    protected override void DoChildStopped(Node child)
+    protected override void DoChildStopped(Node child, bool success)
     {
-       
+        if (success)
+        {
+            OnProcessChildren();
+        }
+        else
+        {
+            Stopped(success);
+        }
     }
     protected override void OnProcessChildren()
     {
@@ -24,7 +31,7 @@ public class Sequence : Composite
         {
             if (IsStopRequested)
             {
-                Stopped();
+                Stopped(false);
             }
             else
             {
@@ -33,7 +40,11 @@ public class Sequence : Composite
         }
         else
         {
-            Stopped();
+            Stopped(true);
         }
+    }
+    public override void StopLowerPriorityChildren(Node child, bool immediateRestart)
+    {
+       
     }
 }

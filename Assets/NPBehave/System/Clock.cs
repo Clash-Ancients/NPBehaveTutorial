@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 public class Clock
 {
 
@@ -65,7 +64,7 @@ public class Clock
         timer.ScheduleElapsedTime(m_elapsedTime);
     }
 
-    public void RemoveTimer(System.Action _action)
+    void RemoveTimer(System.Action _action)
     {
         if (!m_isUpdate)
         {
@@ -145,10 +144,8 @@ public class Clock
         {
             VARIABLE?.Invoke();
         }
-
-        var keys = m_dicTimers.Keys;
         
-        foreach (var action in keys)
+        foreach (var action in m_dicTimers.Keys)
         {
             if(m_removeTimers.Contains(action))
                 continue;

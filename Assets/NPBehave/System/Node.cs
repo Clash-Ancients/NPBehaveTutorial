@@ -19,6 +19,8 @@ public abstract class Node
    string m_name;
 
    protected Container m_parentNode;
+   
+   public Container ParentNode => m_parentNode;
 
    protected Root m_rootNode;
 
@@ -77,12 +79,12 @@ public abstract class Node
       
    }
 
-   protected virtual void Stopped()
+   protected virtual void Stopped(bool success)
    {
       m_NodeState = eNodeState.eUNACTIVE;
       if (null != m_parentNode)
       {
-         m_parentNode.ChildStopped(this);
+         m_parentNode.ChildStopped(this, success);
       }  
    }
    

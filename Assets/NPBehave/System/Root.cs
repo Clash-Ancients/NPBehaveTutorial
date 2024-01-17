@@ -38,8 +38,8 @@ public class Root : Decorator
         m_mainNode.Stop();
     }
     
-    protected override void DoChildStopped(Node child)
+    protected override void DoChildStopped(Node child, bool success)
     {
-       Stopped();
+       Stopped(success);
     }
 }
