@@ -133,6 +133,17 @@ public abstract class Node
    public bool DebugLastResult = false;
 #endif
   
+   public virtual void ParentCompositeStopped(Composite composite)
+   {
+      DoParentCompositeStopped(composite);
+   }
+
+   /// THIS IS CALLED WHILE YOU ARE INACTIVE, IT's MEANT FOR DECORATORS TO REMOVE ANY PENDING
+   /// OBSERVERS
+   protected virtual void DoParentCompositeStopped(Composite composite)
+   {
+      /// be careful with this!
+   }
   
    
 }

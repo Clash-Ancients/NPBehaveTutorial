@@ -28,6 +28,15 @@ public abstract class Composite : Container
     
     public abstract void StopLowerPriorityChildren(Node child, bool immediateRestart);
     
+    protected override void Stopped(bool success)
+    {
+        foreach (Node child in m_children)
+        {
+            child.ParentCompositeStopped(this);
+        }
+        base.Stopped(success);
+    }
+    
 #if UNITY_EDITOR
     public override Node[] DebugChildren
     {

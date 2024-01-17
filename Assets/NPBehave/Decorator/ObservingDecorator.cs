@@ -83,6 +83,15 @@ public abstract class ObservingDecorator : Decorator
 
         }
     }
+
+    protected override void DoParentCompositeStopped(Composite composite)
+    {
+        if (m_isObserving)
+        {
+            m_isObserving = false;
+            StopObserving();
+        }
+    }
     
     protected abstract bool IsConditionMet();
 
