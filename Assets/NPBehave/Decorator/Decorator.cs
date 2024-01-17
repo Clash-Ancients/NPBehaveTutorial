@@ -14,4 +14,14 @@ public abstract class Decorator : Container
       m_decorator.SetRoot(rootNode);
    }
    
+   #if UNITY_EDITOR
+   public override Node[] DebugChildren
+   {
+      get
+      {
+         return new Node[] { m_decorator };
+      }
+   }
+#endif
+   
 }

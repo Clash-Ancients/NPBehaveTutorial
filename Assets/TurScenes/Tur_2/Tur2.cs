@@ -5,6 +5,7 @@
  * 组合节点: Sequence, Selector
  * 任务节点: WaitUntilStopped
  */
+using NPBehave;
 using UnityEngine;
 public class Tur2 : TurBase
 {
@@ -37,5 +38,10 @@ public class Tur2 : TurBase
         );
         
         m_Root.Start();
+        
+        #if UNITY_EDITOR
+        Debugger debugger = (Debugger)this.gameObject.AddComponent(typeof(Debugger));
+        debugger.BehaviorTree = m_Root;
+#endif
     }
 }

@@ -2,8 +2,12 @@ public class BlackboardCondition : ObservingDecorator
 {
 
     Operator m_op;
+    public Operator Operator => m_op;
     string m_key;
+    public string Key => m_key;
+    
     object m_value;
+    public object Value => m_value;
     
     public BlackboardCondition(string _key, Operator _op, object _result, STOPS _stop, Node _decorator) : base("BlackboardCondition", _decorator)
     {

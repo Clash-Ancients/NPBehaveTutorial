@@ -30,9 +30,16 @@ public class Root : Decorator
     
     protected override void DoStart()
     {
+        m_blackboard.Enable();
         m_mainNode.Start();
     }
 
+    #if UNITY_EDITOR
+    public int TotalNumStartCalls = 0;
+    public int TotalNumStopCalls = 0;
+    public int TotalNumStoppedCalls = 0;
+#endif
+    
     protected override void DoStop()
     {
         m_mainNode.Stop();
@@ -40,6 +47,7 @@ public class Root : Decorator
     
     protected override void DoChildStopped(Node child, bool success)
     {
+        m_blackboard.Disable();
        Stopped(success);
     }
 }

@@ -27,4 +27,27 @@ public abstract class Composite : Container
     protected abstract void OnProcessChildren();
     
     public abstract void StopLowerPriorityChildren(Node child, bool immediateRestart);
+    
+#if UNITY_EDITOR
+    public override Node[] DebugChildren
+    {
+        get
+        {
+            return this.m_children;
+        }
+    }
+
+    public Node DebugGetActiveChild()
+    {
+        foreach( Node node in DebugChildren )
+        {
+            if(node.NodeState == eNodeState.eACTIVE )
+            {
+                return node;
+            }
+        }
+
+        return null;
+    }
+#endif
 }

@@ -10,11 +10,35 @@ public abstract class Node
       eSTOP_REQUESTED,
    }
 
+   private string label;
+
+   public string Label
+   {
+      get
+      {
+         return label;
+      }
+      set
+      {
+         label = value;
+      }
+   }
+   
+   public string Name
+   {
+      get
+      {
+         return m_name;
+      }
+   }
+   
    public bool IsActive => m_NodeState == eNodeState.eACTIVE;
    
    public bool IsStopRequested => m_NodeState == eNodeState.eSTOP_REQUESTED;
    
    protected eNodeState m_NodeState = eNodeState.eUNACTIVE;
+
+   public eNodeState NodeState => m_NodeState;
    
    string m_name;
 
@@ -56,6 +80,11 @@ public abstract class Node
          return;
       }
       
+      #if UNITY_EDITOR
+      m_rootNode.TotalNumStartCalls++;
+      this.DebugNumStartCalls++;
+#endif
+      
       m_NodeState = eNodeState.eACTIVE;
       DoStart();
    }
@@ -71,6 +100,13 @@ public abstract class Node
       }
       
       m_NodeState = eNodeState.eSTOP_REQUESTED;
+      
+      #if UNITY_EDITOR
+      m_rootNode.TotalNumStopCalls++;
+      this.DebugLastStopRequestAt = UnityEngine.Time.time;
+      this.DebugNumStopCalls++;
+#endif
+      
       DoStop();
    }
 
@@ -88,6 +124,14 @@ public abstract class Node
       }  
    }
    
+   #if UNITY_EDITOR
+   public float DebugLastStopRequestAt = 0.0f;
+   public float DebugLastStoppedAt = 0.0f;
+   public int DebugNumStartCalls = 0;
+   public int DebugNumStopCalls = 0;
+   public int DebugNumStoppedCalls = 0;
+   public bool DebugLastResult = false;
+#endif
   
   
    

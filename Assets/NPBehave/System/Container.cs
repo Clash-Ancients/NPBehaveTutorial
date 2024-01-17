@@ -2,6 +2,19 @@
 public abstract class Container : Node
 {
     
+    private bool collapse = false;
+    public bool Collapse
+    {
+        get
+        {
+            return collapse;
+        }
+        set
+        {
+            collapse = value;
+        }
+    }
+    
     public void ChildStopped(Node child, bool success)
     {
         DoChildStopped(child, success);
@@ -12,4 +25,13 @@ public abstract class Container : Node
     public Container(string _name) : base(_name)
     {
     }
+    
+    
+#if UNITY_EDITOR
+    public abstract Node[] DebugChildren
+    {
+        get;
+    }
+#endif
+    
 }

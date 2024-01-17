@@ -6,6 +6,30 @@ public class Clock
 
     bool m_isUpdate = false;
     
+    public int NumTimers
+    {
+        get
+        {
+            return m_dicTimers.Count;
+        }
+    }
+    
+    public int DebugPoolSize
+    {
+        get
+        {
+            return this.m_listTimer.Count;
+        }
+    }
+    
+    public int NumUpdateObservers
+    {
+        get
+        {
+            return m_observer.Count;
+        }
+    }
+    
     public class Timer
     {
         public float delay = 0f;
