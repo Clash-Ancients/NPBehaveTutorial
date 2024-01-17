@@ -95,53 +95,58 @@ public class Blackboard
 
     public void AddObserver(string _key, System.Action _callback)
     {
+        var listObserver = GetObserverList(m_dicObservers, _key);
         if (!m_isNotify)
         {
-            if (!m_dicObservers.ContainsKey(_key))
+            if (!listObserver.Contains(_callback))
             {
-                m_dicObservers[_key] = new List<System.Action>
-                {
-                    _callback
-                };
-            }
-            else
-            {
-                m_dicObservers[_key].Add(_callback);
+                listObserver.Add(_callback);
             }
         }
         else
         {
-            if (!m_dicAddObservers.ContainsKey(_key))
+            var listAddObserver = GetObserverList(m_dicAddObservers, _key);
+            if (!listObserver.Contains(_callback) && !listAddObserver.Contains(_callback))
             {
-                m_dicAddObservers[_key] = new List<System.Action>
-                {
-                    _callback
-                };
+                listAddObserver.Add(_callback);
             }
-            else
+            
+            var listRemoveObserver = GetObserverList(m_dicRemoveObservers, _key);
+            if (listRemoveObserver.Contains(_callback))
             {
-                m_dicAddObservers[_key].Add(_callback);
-            }
-
-            if (m_dicRemoveObservers.ContainsKey(_key))
-            {
-                var list = m_dicRemoveObservers[_key];
-                if (list.Contains(_callback))
-                {
-                    list.Remove(_callback);
-                }
+                listRemoveObserver.Remove(_callback);
             }
         }
     }
 
-    public void RemoveObserver(string _key)
+    public void RemoveObserver(string _key, System.Action observer)
     {
+
+        var listObserver = GetObserverList(m_dicObservers, _key);
+        
         if (!m_isNotify)
         {
-            
+            if (listObserver.Contains(observer))
+            {
+                listObserver.Remove(observer);
+            }
         }
         else
         {
+            var listRemoveObserver = GetObserverList(m_dicRemoveObservers, _key);
+            
+            if (!listRemoveObserver.Contains(observer) && listObserver.Contains(observer))
+            {
+                listRemoveObserver.Add(observer);
+            }
+            
+            var listAddObserver = GetObserverList(m_dicAddObservers, _key);
+
+            if (listAddObserver.Contains(observer))
+            {
+                listAddObserver.Remove(observer);
+            }
+            
             
         }
     }
@@ -149,12 +154,12 @@ public class Blackboard
     void NotifyCB()
     {
         m_isNotify = true;
-
-
+        
         foreach (var notification in m_listNotify)
         {
             if(!m_dicObservers.ContainsKey(notification.key))
                 continue;
+            
             var list = m_dicObservers[notification.key];
             
             foreach (var action in list)
@@ -167,13 +172,31 @@ public class Blackboard
         }
         
         
-        foreach (var VARIABLE in m_dicAddObservers)
+        foreach (var key in m_dicAddObservers.Keys)
         {
-            m_dicObservers[VARIABLE.Key].AddRange(VARIABLE.Value);
+            GetObserverList(m_dicObservers, key).AddRange(m_dicAddObservers[key]);
+        }
+
+        foreach (var key in m_dicRemoveObservers.Keys)
+        {
+            foreach (System.Action action in m_dicRemoveObservers[key])
+            {
+                GetObserverList(m_dicRemoveObservers, key).Remove(action);
+            }
         }
         
         m_dicAddObservers.Clear();
-
+        m_dicRemoveObservers.Clear();
         m_isNotify = false;
+    }
+
+    List<System.Action> GetObserverList(Dictionary<string, List<System.Action>> _dicObserver, string _key)
+    {
+        if (!_dicObserver.ContainsKey(_key))
+        {
+            _dicObserver.Add(_key, new List<System.Action>());
+        }
+
+        return _dicObserver[_key];
     }
 }

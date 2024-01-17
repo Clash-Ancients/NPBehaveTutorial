@@ -27,13 +27,15 @@ public class BlackboardCondition : ObservingDecorator
         
         return false;
     }
+    
     protected override void StartObserving()
     {
        m_rootNode.Blackboard.AddObserver(m_key, Evaluate);
     }
+    
     protected override void StopObserving()
     {
-        m_rootNode.Blackboard.RemoveObserver(m_key);
+        m_rootNode.Blackboard.RemoveObserver(m_key, Evaluate);
     }
     
 }
