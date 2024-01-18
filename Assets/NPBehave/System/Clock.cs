@@ -46,8 +46,13 @@ public class Clock
 
     Dictionary<System.Action, Timer> m_dicTimers = new Dictionary<System.Action, Timer>();
     Dictionary<System.Action, Timer> m_dicAddTimers = new Dictionary<System.Action, Timer>();
+    
+    HashSet<System.Action> m_addObservers = new HashSet<System.Action>();
+    HashSet<System.Action> m_removeObservers = new HashSet<System.Action>();
+    
     HashSet<System.Action> m_removeTimers = new HashSet<System.Action>();
     List<Timer> m_listTimer = new List<Timer>();
+    
     int m_curTimerIndex = 0;
     
     public void AddTimer(float _delay, int _repeat, System.Action _action)
@@ -144,18 +149,50 @@ public class Clock
     
     public void OnAddUpdateObserver(System.Action observer)
     {
-        if (!m_observer.Contains(observer))
+        if (!m_isUpdate)
         {
-            m_observer.Add(observer);
+            if (!m_observer.Contains(observer))
+            {
+                m_observer.Add(observer);
+            }
         }
+        else
+        {
+            if (!m_observer.Contains(observer) && !m_addObservers.Contains(observer))
+            {
+                m_addObservers.Add(observer);
+            }
+
+            if (m_removeObservers.Contains(observer))
+            {
+                m_removeObservers.Remove(observer);
+            }
+        }
+        
     }
 
     public void OnRemoveUpdateObserver(System.Action observer)
     {
-        if (m_observer.Contains(observer))
+        if (!m_isUpdate)
         {
-            m_observer.Remove(observer);
+            if (m_observer.Contains(observer))
+            {
+                m_observer.Remove(observer);
+            }
         }
+        else
+        {
+            if (m_observer.Contains(observer) && !m_removeObservers.Contains(observer))
+            {
+                m_removeObservers.Add(observer);
+            }
+            
+            if (m_addObservers.Contains(observer))
+            {
+                m_addObservers.Remove(observer);
+            }
+        }
+       
     }
     
     public void Update(float deltaTime)
@@ -166,7 +203,19 @@ public class Clock
         
         foreach (var VARIABLE in m_observer)
         {
+            if(m_removeObservers.Contains(VARIABLE))
+                continue;
             VARIABLE?.Invoke();
+        }
+        
+        foreach (var VARIABLE in m_addObservers)
+        {
+            m_observer.Add(VARIABLE);
+        }
+
+        foreach (var VARIABLE in m_removeObservers)
+        {
+            m_observer.Remove(VARIABLE);
         }
         
         foreach (var action in m_dicTimers.Keys)
@@ -188,6 +237,8 @@ public class Clock
             }
         }
 
+        
+        
         foreach (var VARIABLE in m_dicAddTimers)
         {
             if (m_dicTimers.ContainsKey(VARIABLE.Key))
@@ -206,7 +257,8 @@ public class Clock
         
         m_dicAddTimers.Clear();
         m_removeTimers.Clear();
-        
+        m_addObservers.Clear();
+        m_removeObservers.Clear();
         m_isUpdate = false;
     }
 }

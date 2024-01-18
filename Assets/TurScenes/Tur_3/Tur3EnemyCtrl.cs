@@ -7,14 +7,14 @@ public class Tur3EnemyCtrl : TurBase
     void Start()
     {
 
-        m_agent = m_target.GetComponent<NavMeshAgent>();
+        m_agent = gameObject.GetComponent<NavMeshAgent>();
         
         m_Root = new Root(new Service(0.125f, UpdateBlackboard, new Selector(
             
                 new BlackboardCondition("playerDistance", Operator.IS_LESS, 7.5f, STOPS.IMMEDIATE_RESTART, new Sequence(
                         
                     new Action(() => { Debug.Log("begin to chase");}),
-                                new NavTo(),
+                                new NavTo(m_agent, "playerTrans", 1.5f),
                                 new Action(() => { Debug.Log("successfully chased the target");})
                     )),
                 
@@ -32,5 +32,6 @@ public class Tur3EnemyCtrl : TurBase
     {
         var distance = Vector3.Distance(transform.position, m_target.transform.position);
         m_Root.Blackboard["playerDistance"] = distance;
+        m_Root.Blackboard["playerTrans"] = m_target.transform;
     }
 }

@@ -47,7 +47,15 @@ public class Root : Decorator
     
     protected override void DoChildStopped(Node child, bool success)
     {
-        m_blackboard.Disable();
-       Stopped(success);
+        if (!IsStopRequested)
+        {
+            // wait one tick, to prevent endless recursions
+            m_clock.AddTimer(0, 0, m_mainNode.Start);
+        }
+        else
+        {
+            m_blackboard.Disable();
+            Stopped(success);
+        }
     }
 }

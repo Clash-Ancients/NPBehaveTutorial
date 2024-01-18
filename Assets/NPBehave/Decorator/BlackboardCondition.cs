@@ -1,7 +1,6 @@
 using UnityEngine;
 public class BlackboardCondition : ObservingDecorator
 {
-
     Operator m_op;
     public Operator Operator => m_op;
     string m_key;
@@ -18,10 +17,8 @@ public class BlackboardCondition : ObservingDecorator
         m_value = _result;
     }
     
-    
     protected override bool IsConditionMet()
     {
-
         var keyValue = m_rootNode.Blackboard.Get(m_key);
         
         switch (m_op)
@@ -64,5 +61,4 @@ public class BlackboardCondition : ObservingDecorator
     {
         m_rootNode.Blackboard.RemoveObserver(m_key, Evaluate);
     }
-    
 }
