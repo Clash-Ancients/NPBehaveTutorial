@@ -48,8 +48,11 @@ public abstract class ObservingDecorator : Decorator
     {
         if (IsActive && !IsConditionMet())
         {
-            //
-            Stop();
+            if (m_stop == STOPS.BOTH || m_stop == STOPS.IMMEDIATE_RESTART)
+            {
+                Stop();
+            }
+            
         }
         else if (!IsActive && IsConditionMet())
         {
@@ -59,28 +62,29 @@ public abstract class ObservingDecorator : Decorator
              * 1 让sequence 停止
              * 2 让blackboard打开
              */
-
-            Container parentNode = ParentNode;
-            Node childNode = this;
-            while (null != parentNode && !(parentNode is Composite))
+            if (m_stop == STOPS.BOTH || m_stop == STOPS.IMMEDIATE_RESTART )
             {
-                childNode = parentNode;
-                parentNode = parentNode.ParentNode;
-            }
-            
-            if (m_stop == STOPS.IMMEDIATE_RESTART)
-            {
-                if (m_isObserving)
+                Container parentNode = ParentNode;
+                Node childNode = this;
+                while (null != parentNode && !(parentNode is Composite))
                 {
-                    StopObserving();
-                    m_isObserving = false;
+                    childNode = parentNode;
+                    parentNode = parentNode.ParentNode;
                 }
-            }
-
-            var composite = (Composite)parentNode;
             
-            composite.StopLowerPriorityChildren(childNode, true);
+                if (m_stop == STOPS.IMMEDIATE_RESTART)
+                {
+                    if (m_isObserving)
+                    {
+                        StopObserving();
+                        m_isObserving = false;
+                    }
+                }
 
+                var composite = (Composite)parentNode;
+            
+                composite.StopLowerPriorityChildren(childNode, m_stop == STOPS.IMMEDIATE_RESTART);
+            }
         }
     }
 

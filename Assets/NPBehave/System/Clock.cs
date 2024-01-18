@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 public class Clock
 {
 
@@ -149,6 +150,7 @@ public class Clock
     
     public void OnAddUpdateObserver(System.Action observer)
     {
+        Debug.Log("add");
         if (!m_isUpdate)
         {
             if (!m_observer.Contains(observer))
@@ -158,7 +160,7 @@ public class Clock
         }
         else
         {
-            if (!m_observer.Contains(observer) && !m_addObservers.Contains(observer))
+            if (!m_observer.Contains(observer))
             {
                 m_addObservers.Add(observer);
             }
@@ -173,6 +175,7 @@ public class Clock
 
     public void OnRemoveUpdateObserver(System.Action observer)
     {
+        Debug.Log("remove");
         if (!m_isUpdate)
         {
             if (m_observer.Contains(observer))
@@ -218,6 +221,9 @@ public class Clock
             m_observer.Remove(VARIABLE);
         }
         
+        m_addObservers.Clear();
+        m_removeObservers.Clear();
+        
         foreach (var action in m_dicTimers.Keys)
         {
             if(m_removeTimers.Contains(action))
@@ -257,8 +263,7 @@ public class Clock
         
         m_dicAddTimers.Clear();
         m_removeTimers.Clear();
-        m_addObservers.Clear();
-        m_removeObservers.Clear();
+
         m_isUpdate = false;
     }
 }

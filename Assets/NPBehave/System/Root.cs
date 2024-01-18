@@ -22,6 +22,14 @@ public class Root : Decorator
         SetRoot(this);
     }
 
+    public Root(Blackboard bb,  Node _mainnode) : base("Root", _mainnode)
+    {
+        m_mainNode = _mainnode;
+        m_blackboard = bb;
+        m_clock = m_blackboard.Clock;
+        SetRoot(this);
+    }
+
     public override void SetRoot(Root _root)
     {
         base.SetRoot(_root);

@@ -23,6 +23,8 @@ public class Blackboard
     }
     
     Clock m_clock;
+    
+    public Clock Clock => m_clock;
 
     Blackboard m_parentBlackboard;
     
