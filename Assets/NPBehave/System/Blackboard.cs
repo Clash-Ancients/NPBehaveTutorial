@@ -230,12 +230,13 @@ public class Blackboard
         {
             foreach (System.Action action in m_dicRemoveObservers[key])
             {
-                GetObserverList(m_dicRemoveObservers, key).Remove(action);
+                GetObserverList(m_dicObservers, key).Remove(action);
             }
         }
         
         m_dicAddObservers.Clear();
         m_dicRemoveObservers.Clear();
+        m_listNotify.Clear();
         m_isNotify = false;
     }
 

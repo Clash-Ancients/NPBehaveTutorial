@@ -51,6 +51,31 @@ public class Sequence : Composite
     }
     public override void StopLowerPriorityChildren(Node child, bool immediateRestart)
     {
-       
+        int indexForChild = 0;
+        bool found = false;
+        foreach (var VARIABLE in m_children)
+        {
+            if (VARIABLE == child)
+            {
+                found = true;
+            }
+            else if (!found)
+            {
+                indexForChild++;
+            }
+            else if(found && VARIABLE.IsActive)
+            {
+                if (immediateRestart)
+                {
+                    m_curIndex = indexForChild - 1;
+                }
+                else
+                {
+                    m_curIndex = m_children.Length;
+                }
+                VARIABLE.Stop();
+                break;
+            }
+        }
     }
 }

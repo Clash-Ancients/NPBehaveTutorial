@@ -1,3 +1,4 @@
+using UnityEngine;
 public class BlackboardCondition : ObservingDecorator
 {
 
@@ -27,9 +28,31 @@ public class BlackboardCondition : ObservingDecorator
         {
             case Operator.IS_EQUAL: 
                 return Equals(m_value, keyValue);
+            case Operator.IS_LESS:
+            {
+                if (keyValue is float && m_value is float)
+                {
+                    var orig = (float)keyValue;
+                    var target = (float)m_value;
+
+                    return orig < target;
+                }
+                
+                if (keyValue is int && m_value is int)
+                {
+                    var orig = (float)keyValue;
+                    var target = (float)m_value;
+
+                    return orig < target;
+                }
+                
+                Debug.LogError("Type not compareable: " + keyValue.GetType());
+
+                return false;
+            }
+            default:
+                return false;
         }
-        
-        return false;
     }
     
     protected override void StartObserving()
