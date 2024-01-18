@@ -25,7 +25,7 @@ public class BlackboardCondition : ObservingDecorator
         {
             case Operator.IS_EQUAL: 
                 return Equals(m_value, keyValue);
-            case Operator.IS_LESS:
+            case Operator.IS_SMALLER:
             {
                 if (keyValue is float && m_value is float)
                 {

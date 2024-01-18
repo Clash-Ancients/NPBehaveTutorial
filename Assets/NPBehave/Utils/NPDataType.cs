@@ -1,7 +1,7 @@
 public enum Operator
 {
     IS_EQUAL,
-    IS_LESS,
+    IS_SMALLER,
 }
 
 public enum STOPS

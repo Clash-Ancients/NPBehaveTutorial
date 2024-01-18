@@ -40,7 +40,7 @@ namespace NPBehave
             // operatorToString[Operator.IS_GREATER_OR_EQUAL] = ">=";
             // operatorToString[Operator.IS_GREATER] = ">";
             // operatorToString[Operator.IS_SMALLER_OR_EQUAL] = "<=";
-            // operatorToString[Operator.IS_SMALLER] = "<";
+            operatorToString[Operator.IS_SMALLER] = "<";
             // operatorToString[Operator.ALWAYS_TRUE] = "ALWAYS_TRUE";
 
             nameToTagString = new Dictionary<string, string>();
