@@ -27,6 +27,7 @@ QualitySettings:
     realtimeReflectionProbes: 0
     billboardsFaceCameraPosition: 0
     vSyncCount: 0
+    realtimeGICPUUsage: 25
     lodBias: 0.3
     maximumLODLevel: 0
     streamingMipmapsActive: 0
@@ -40,7 +41,7 @@ QualitySettings:
     asyncUploadBufferSize: 4
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: da9051719aee13141b8a0e4dbaa3ee66,
+    customRenderPipeline: {fileID: 11400000, guid: b2c4e32915196408d9daff90755390b7,
       type: 2}
     excludedTargetPlatforms:
     - Standalone
@@ -65,6 +66,7 @@ QualitySettings:
     realtimeReflectionProbes: 0
     billboardsFaceCameraPosition: 0
     vSyncCount: 0
+    realtimeGICPUUsage: 25
     lodBias: 0.4
     maximumLODLevel: 0
     streamingMipmapsActive: 0
@@ -78,7 +80,8 @@ QualitySettings:
     asyncUploadBufferSize: 4
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 0}
+    customRenderPipeline: {fileID: 11400000, guid: 7f765baec09304a6481792592862c702,
+      type: 2}
     excludedTargetPlatforms: []
   - serializedVersion: 2
     name: Simple
@@ -101,6 +104,7 @@ QualitySettings:
     realtimeReflectionProbes: 0
     billboardsFaceCameraPosition: 0
     vSyncCount: 0
+    realtimeGICPUUsage: 25
     lodBias: 0.7
     maximumLODLevel: 0
     streamingMipmapsActive: 0
@@ -114,7 +118,8 @@ QualitySettings:
     asyncUploadBufferSize: 4
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 0}
+    customRenderPipeline: {fileID: 11400000, guid: 1b969c7ab7bfe4c3297cb6fee7c3c396,
+      type: 2}
     excludedTargetPlatforms: []
   - serializedVersion: 2
     name: Good
@@ -137,6 +142,7 @@ QualitySettings:
     realtimeReflectionProbes: 1
     billboardsFaceCameraPosition: 1
     vSyncCount: 1
+    realtimeGICPUUsage: 50
     lodBias: 1
     maximumLODLevel: 0
     streamingMipmapsActive: 0
@@ -150,7 +156,8 @@ QualitySettings:
     asyncUploadBufferSize: 4
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 0}
+    customRenderPipeline: {fileID: 11400000, guid: 61c281e9e3baf4a14ba75f85b01755c4,
+      type: 2}
     excludedTargetPlatforms: []
   - serializedVersion: 2
     name: Beautiful
@@ -173,6 +180,7 @@ QualitySettings:
     realtimeReflectionProbes: 1
     billboardsFaceCameraPosition: 1
     vSyncCount: 1
+    realtimeGICPUUsage: 50
     lodBias: 1.5
     maximumLODLevel: 0
     streamingMipmapsActive: 0
@@ -186,7 +194,8 @@ QualitySettings:
     asyncUploadBufferSize: 4
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 0}
+    customRenderPipeline: {fileID: 11400000, guid: 78438839536e047b789841cae8c55593,
+      type: 2}
     excludedTargetPlatforms: []
   - serializedVersion: 2
     name: Fantastic
@@ -209,6 +218,7 @@ QualitySettings:
     realtimeReflectionProbes: 1
     billboardsFaceCameraPosition: 1
     vSyncCount: 0
+    realtimeGICPUUsage: 100
     lodBias: 2
     maximumLODLevel: 0
     streamingMipmapsActive: 0
@@ -222,7 +232,7 @@ QualitySettings:
     asyncUploadBufferSize: 4
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: 9146dc404e15db846a4317586187455e,
+    customRenderPipeline: {fileID: 11400000, guid: 78544585878d6419ca541436ce59f0c6,
       type: 2}
     excludedTargetPlatforms: []
   m_PerPlatformDefaultQuality:
